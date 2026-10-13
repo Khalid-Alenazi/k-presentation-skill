@@ -1,8 +1,8 @@
 # K Presentation Skill
 
-A Claude skill that turns any source material (deck, PDF, notes, screenshots) into a **self-contained, video-style HTML film**: animated SVG scenes, synced captions, ElevenLabs v4 narration, optional background music, and Elm brand identity.
+A Claude skill that turns any source material (deck, PDF, notes, screenshots) into a **self-contained, video-style HTML film**: animated SVG scenes, synced captions, ElevenLabs v4 narration and optional background music.
 
-سكل لـ Claude يحوّل أي محتوى (عرض، PDF، ملاحظات، صور) إلى **فيلم HTML يشتغل كفيديو**: مشاهد SVG متحركة، ترجمة متزامنة، تعليق صوتي بـ ElevenLabs v4، موسيقى خلفية اختيارية، وهوية علم.
+مهارة لـ Claude يحوّل أي محتوى (عرض، PDF، ملاحظات، صور) إلى **فيلم HTML يشتغل كفيديو**: مشاهد SVG متحركة، ترجمة متزامنة، تعليق صوتي بـ ElevenLabs v4، وموسيقى خلفية اختيارية.
 
 ## What it does / وش يسوي
 - Asks first: **language**, **duration**, **background music** / يسأل أول شي: اللغة، المدة، الموسيقى
