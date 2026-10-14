@@ -30,7 +30,7 @@ The language sets `dir`/`lang` of the content, fonts, caption direction, diagram
 ## 1. Collect remaining inputs (one message, only what is missing)
 - Source material + topic + audience (e.g. managers, PMs, leadership)
 - Speaker model: single narrator OR personas (each product/feature speaks in first person)
-- Brand assets: logo (SVG/PNG), fonts, colors, department name. If not provided, see section 6.
+- Brand assets: logo (SVG/PNG), colors, department name. If not provided, see section 6. NEVER ask about fonts; fonts are fixed by section 6a.
 - Must-keep items: exact numbers, names, wording, real screenshots/recordings
 - Existing audio? If yes, sync visuals to that audio instead of writing a new script.
 
@@ -84,8 +84,15 @@ Each persona gets: name, one accent color, an SVG emblem (motif tied to what it 
 
 ## 6. Brand identity (Elm)
 - Top corner: Elm logo + department name beside it, on every scene except full-bleed opening/closing moments.
-- Use the provided logo, fonts and palette exactly. If assets are inside an existing HTML, extract them (base64 fonts via `@font-face ... url(data:...)`, logo src) instead of re-creating.
-- If NO brand assets are provided: ask for them. Do not invent the Elm logo or guess brand colors; use a neutral placeholder and say so.
+- Use the provided logo and palette exactly. If assets are inside an existing HTML, extract them (logo src, colors) instead of re-creating.
+- If NO logo or colors are provided: ask for them. Do not invent the Elm logo or guess brand colors; use a neutral placeholder and say so.
+
+### 6a. Fonts (fixed, NEVER ask the user)
+Do not ask about fonts at any point. Always apply this order automatically:
+1. **Elm font (default).** Look for it, in order: an `@font-face` embedded in any attached/source HTML (family names containing "Elm"), font files attached by the user (.ttf/.otf/.woff/.woff2 with "Elm" in the name), then a previous film in the conversation. If found, embed it as base64 and use it.
+2. **IBM Plex (fallback).** If no Elm font is found, silently use **IBM Plex Sans Arabic** for Arabic and **IBM Plex Sans** for English/Latin. Get them from npm (`npm pack @fontsource/ibm-plex-sans-arabic @fontsource/ibm-plex-sans`, weights 300/400/500/700, woff2) and embed as base64 so the file stays offline and self-contained.
+- CSS stack always: `font-family: "Elm", "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif;`
+- Mention which font was used in one line of the delivery note only (e.g. "Font: IBM Plex fallback"), never as a question.
 
 ## 7. Voice: ElevenLabs v4 script and voice picks
 
@@ -133,7 +140,7 @@ All scenes, all speakers, in order, in a single file, ready to paste. Structure:
 ## 9. QA before every delivery (Playwright)
 - Load the file, use `VIDEO.seek(t)`, wait ~600ms, screenshot the middle of every scene plus transitions.
 - Build a contact sheet (PIL grid of resized JPEGs) and review it in one Read.
-- Check: Play button bottom-left and Fullscreen bottom-right; CC button and C key hide/show captions; progress fills left->right; content direction correct; no text overflow/clipping; no overlap with logo, captions or controls; captions match narration; emblem not scaling with voice; music ducks under voice; runtime matches the chosen duration; keyboard controls work.
+- Check: font is Elm or IBM Plex (no system-font fallback visible); Play button bottom-left and Fullscreen bottom-right; CC button and C key hide/show captions; progress fills left->right; content direction correct; no text overflow/clipping; no overlap with logo, captions or controls; captions match narration; emblem not scaling with voice; music ducks under voice; runtime matches the chosen duration; keyboard controls work.
 - Fix issues, then re-screenshot.
 
 ## 10. Delivery and iteration
